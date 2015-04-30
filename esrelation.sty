@@ -105,13 +105,14 @@
 	\dimen0=\ht0					% main box height
 	\dimen1=\wd0					% main box width
 	%\advance\dimen0 by -.5em		% close vertical gap
+	\advance\dimen0 by \dp0
 	\vbox{
 		\ialign{##\crcr
 			\noalign{\kern-.3em\nointerlineskip}		% overline
 			\hbox to \dimen1{$\kern.1em\brktr$#1#2}$\mkern-3mu
 			\arrwr$\crcr			
 			\noalign{\kern-.1em\nointerlineskip}$\m@th	% main
-			\kern.1em\relationverticalbarfillleft{\dimen0}\kern-.3em\box0 $\crcr	
+			\kern.1em\relationverticalbarfillleft{\dimen0}\kern-.3em\vbox{\box0\kern-\dp0} $\crcr	
 		}
 	}
 }
@@ -124,13 +125,13 @@
 	\dimen0=\ht0					% main box height
 	\dimen1=\wd0					% main box width
 	%advance\dimen0 by -.5em		% close vertical gap
+	\advance\dimen0 by \dp0
 	\vbox{
 		\ialign{##\crcr
 			\noalign{\kern-.3em\nointerlineskip}		% overline
 			\hbox to \dimen1{$\mkern2mu\arrwl$#1#2}$\kern.1em\brktl$\crcr		
 			\noalign{\kern-.1em\nointerlineskip}$\m@th	% main
-			\mkern3mu\box0\mkern-3mu\kern.1em\relationverticalbarfillright{
-			\dimen0}$\crcr	
+			\mkern3mu\vbox{\box0\kern-\dp0}\mkern-3mu\kern.1em\relationverticalbarfillright{\dimen0}$\crcr	
 		}
 	}
 }
@@ -143,15 +144,14 @@
 	\dimen0=\ht0					% main box height
 	\dimen1=\wd0					% main box width
 	\advance\dimen1 by -.25em		% close horizontal gap
-	\lower.75ex\hbox{\vbox{
+	\lower.75ex \hbox{\vbox{
 		\ialign{##\crcr
 			\noalign{\kern0em\nointerlineskip}$\m@th	% main
 			\kern.1em\relationverticalbarfillleft{\dimen0}\mkern-5mu
 			\box0 $\crcr	
-			\noalign{\kern-.2em\nointerlineskip}		% underline
-			\hbox to \dimen1{$\kern.1em\brktlift$#1#2}$\mkern-3mu\barlong
-			\barlong$\crcr		
-		}
+			\noalign{\kern-.3ex\nointerlineskip}	% underline
+			\hbox to \dimen1{$\kern.1em\brktlift$#1#2}$\mkern-5mu\barlong\barlong$\crcr		
+		}\kern-.6ex
 	}
 	}\kern-.25em
 }
