@@ -7,7 +7,7 @@ About
 
 The program termination problem, also known at the uniform halting problem, can be defined as: *Using a finite amount of time: determine whether a given program will always finish running or could possibly execute forever.*
 
-The Metafont programming and LaTeX package writing and TeX macro programming (*especially the TeX macro programming*) required to produce these symbols looked like it might, itself, never end. It took more than a year of work in fits and starts to understand how the jalopy of bits and pieces go together to make a font work with LaTeX. The Comprehensive LaTeXe Symbol List (http://www.ctan.org/tex-archive/info/symbols/comprehensive/) does not currently include this set, but on completion all of these files will be ready to upload in the correct formats for inclusion. These are implemented as a standard TeX math symbol font, implemented with custom Metafont sources, rendered on-the-fly as needed by LaTeX. Also provided in this package is a PostScript Type-1 version of the font. Symbols are accessed through macros defined in this package.
+The Metafont programming and LaTeX package writing and TeX macro programming (*especially the TeX macro programming*) required to produce these symbols looked like it might, itself, never end. It took more than a year of work in fits and starts to understand how the jalopy of bits and pieces go together to make a font work with LaTeX. [The Comprehensive LaTeXe Symbol List](http://www.ctan.org/tex-archive/info/symbols/comprehensive/ "CTAN") does not currently include this set, but on completion all of these files will be ready to upload in the correct formats for inclusion. These are implemented as a standard TeX math symbol font, implemented with custom Metafont sources, rendered on-the-fly as needed by LaTeX. Also provided in this package is a PostScript Type-1 version of the font. Symbols are accessed through macros defined in this package.
 
 Installation
 ------------
@@ -49,8 +49,6 @@ Installation
 Resources
 ---------
 
-Up-to-date source code is hosted on github at:
-https://github.com/reinfurt/ESRELATION
+Up-to-date source code is hosted on [GitHub](https://github.com/reinfurt/ESRELATION).
 
-More information about installing TeX fonts can be found at: 
-https://www.tug.org/fonts/fontinstall.html
+More information about installing TeX fonts can be found [here](https://www.tug.org/fonts/fontinstall.html).
