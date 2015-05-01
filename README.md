@@ -1,5 +1,7 @@
 The ESRELATION package
-Byron Cook, Tauba Auerbach, David Reinfurt
+----------------------
+
+by Byron Cook, Tauba Auerbach, David Reinfurt
 
 The program termination problem, also known at the uniform halting problem, can be defined as: *Using a finite amount of time: determine whether a given program will always finish running or could possibly execute forever.*
 
