@@ -1,0 +1,842 @@
+% \iffalse meta-comment
+% 
+% testing testing
+% 
+% \fi
+%
+% \iffalse
+%<style>\NeedsTeXFormat{LaTeX2e}
+%<style>\ProvidesPackage{esrelation}
+%<fd>\ProvidesFile{uesrelation.fd}
+%<*driver>
+\documentclass[a4paper]{ltxdoc}
+\usepackage{esrelation}
+\parindent 0 pt
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\OnlyDescription
+\begin{document}
+\DocInput{esrelation.dtx}
+\end{document}
+%</driver>
+% \fi
+%\title{The \textsf{\textbf{esrelation}} Package}
+%\author{Byron Cook, Tauba Auerbach, David Reinfurt}
+%\date{v 0.$\overline{9}$ 30/04/2015}
+%\maketitle
+%\MakeShortVerb{\|}
+%\section{Installation}
+%The program termination problem, also known at the uniform halting problem, can be defined as: \emph{Using a finite amount of time: determine whether a given program will always finish running or could possibly execute forever.}\\
+%
+%The Metafont programming and \LaTeXe{} package writing and \TeX macro programming (\emph{especially the \TeX macro programming}) required to produce these symbols looked like it might, itself, never end. It took more than a year of work in fits and starts to understand how the jalopy of bits and pieces go together to make a font work with \LaTeX{}. The Comprehensive \LaTeXe{} Symbol List (http://www.ctan.org/tex-archive/info/symbols/comprehensive/) does not currently include this set, but on completion all of these files will be ready to upload in the correct formats for inclusion. These are implemented as a standard \TeX{} math symbol font, implemented with custom Metafont sources, rendered on-the-fly as needed by \LaTeXe{}. Also provided in this package is a PostScript Type~1 version of the font. Symbols are accessed through macros defined in this package.\\
+%
+%Installation involves copying the supplied files to their designated places within \LaTeX{}'s search path and updating \TeX{}'s databases.
+%
+%\begin{enumerate}
+%\item
+%First, you need to find the folder \texttt{texmf-local} (on Unix the default is \texttt{/usr/local/texlive/texmf-local}). To do that, run: 
+%
+%\texttt{kpsewhich --var-value TEXMFLOCAL}
+%
+%Subsequently, this directory will be referred to as \texttt{TEXMFLOCAL}.
+%
+%\item
+%Run \LaTeX{} on \texttt{esrelation.ins}. 
+%Copy the files into the following directories, creating subdirectories as necessary:
+%
+%\begin{itemize}
+%\item copy \texttt{esrelation.sty} and \texttt{uesrelation.fd} to:\\
+%\texttt{TEXMFLOCAL/tex/latex/esrelation}
+%
+%\item copy \texttt{esrelation.mf} and \texttt{esrelation10.mf} to:\\
+%\texttt{TEXMFLOCAL/fonts/source/public/esrelation}
+%\end{itemize}
+%
+%If you also want to install the fonts in Type1 format:
+%\begin{itemize}
+%\item copy \texttt{esrelation10.pfb} to:\\
+%\texttt{TEXMFLOCAL/fonts/type1/public/esrelation}
+%
+%\item copy \texttt{esrelation.map} to:\\
+%\texttt{TEXMFLOCAL/fonts/map/dvips/esrelation}
+%
+%\end{itemize}
+%
+%Note that all created directories should be set to mode \texttt{755} and all files should be set to mode \texttt{644}.
+%
+%
+%\item
+%Update your \LaTeX{} font database. This is called the ls-r and lives in a few places. Fortunately, you can just run this, likely as sudo or root (\texttt{-H} sets \texttt{HOME} for the sudo environment):
+%
+%\texttt{sudo -H mktexlsr}
+%
+%\item
+%Update your \TeX{} font map by running the command:
+%
+%\texttt{sudo -H updmap-sys --enable Map=esrelation.map}
+%
+%\item
+%Update the font database again:
+%
+%\texttt{sudo -H mktexlsr}
+%
+%\item
+%Open \LaTeX{}, and start relating.
+%\end{enumerate}
+% 
+% \section{Using esrelation}
+%Load the package with \verb|\usepackage{esrelation}|. Available symbols to be used from math mode:\\
+%
+%\begin{tabular}{l l}
+%& \\
+%\verb+\relationrightproject+ & $\relationrightproject{A, Z}$\\
+%&\\
+%\verb+\relationleftproject+ & $\relationleftproject{A, Z}$\\
+%&\\
+%\verb+\relationlifting+ & $\relationlifting{A, Z}$\\
+%&\\
+%\verb+\restrictwand+ & $i_\restrictwand$\\
+%&\\
+%\verb+\restrictwandup+ & $i_\restrictwandup$\\
+%&\\
+%\verb+\restrictbarb+ & $R_\restrictbarb$\\
+%&\\
+%\verb+\restrictbarbup+ & $R_\restrictbarbup$\\
+%&\\
+%\verb+\restrictmallet+ & $Z_\restrictmallet$\\
+%&\\
+%\verb+\restrictmalletup+ & $Z_\restrictmalletup$\\
+%&\\
+%\end{tabular}
+%
+%\newpage
+%\Large
+%\parindent 0pt
+%
+%$\relationrightproject{R_A}$
+%
+%\vskip 2em
+%$\relationrightproject{0, 1}$
+%
+%\vskip 2em
+%$\relationleftproject{0, 1}$
+%
+%\vskip 2em
+%$\relationlifting{0, 1}$
+%
+%\vskip 2em
+%$\relationleftproject{\relationrightproject{\relationleftproject{\relationrightproject{1, 1}}}}$
+%
+%\vskip 2em
+%$\relationlifting{x|x>1, x|x=0}$
+%
+%\vskip 2em
+%$\relationlifting{\relationlifting{\relationlifting{\relationlifting{\relationlifting{x,X_\restrictwand}}}}}$
+%
+%\vskip 2em
+%$\relationleftproject{\relationlifting{\relationlifting{\relationleftproject{\relationrightproject{\relationleftproject{\relationrightproject{i,R}}}}}}}$
+%
+%\vskip 2em
+%$X_\restrictwand$
+%$X_\restrictwand^2$
+%$X_\restrictwand^\infty$
+%
+%\vskip 2em
+%$X_\restrictbarb$
+%
+%\vskip 2em
+%$X_\restrictmallet$
+%
+% \newpage
+% \normalsize
+% End. Try some more combinations now that it's running.
+%
+%\StopEventually{}
+%    \begin{macrocode}
+%<*fd>
+\DeclareFontFamily{U}{esrelation}{}
+\DeclareFontShape{U}{esrelation}{m}{n}{<->esrelation10}{}
+%</fd>
+%    \end{macrocode}
+%    \begin{macrocode}
+%<*style>
+\DeclareSymbolFont{esrelation}{U}{esrelation}{m}{n}
+\DeclareMathSymbol{\arrwr}{\mathord}{esrelation}{'022} % arrow_project_right
+\DeclareMathSymbol{\arrwl}{\mathord}{esrelation}{'023} % arrow_project_left
+\DeclareMathSymbol{\brktr}{\mathrel}{esrelation}{'025} % bracket_project_right
+\DeclareMathSymbol{\brktl}{\mathrel}{esrelation}{'024} % bracket_project_left
+\DeclareMathSymbol{\brktlift}{\mathrel}{esrelation}{'026} % bracket_lifting
+\DeclareMathSymbol{\barshort}{\mathrel}{esrelation}{'040}
+\DeclareMathSymbol{\barlong}{\mathrel}{esrelation}{'043}
+\DeclareMathSymbol{\verticalbarshort}{\mathord}{esrelation}{'045}
+\DeclareMathSymbol{\verticalbarlongleft}{\mathord}{esrelation}{'044}
+\DeclareMathSymbol{\verticalbarlongright}{\mathord}{esrelation}{'046}
+\DeclareMathSymbol{\restrictwand}{\mathord}{esrelation}{'027}
+\DeclareMathSymbol{\restrictbarb}{\mathord}{esrelation}{'030}
+\DeclareMathSymbol{\restrictmallet}{\mathord}{esrelation}{'021}
+\DeclareMathSymbol{\restrictwandup}{\mathord}{esrelation}{'050}
+\DeclareMathSymbol{\restrictbarbup}{\mathord}{esrelation}{'051}
+\DeclareMathSymbol{\restrictmalletup}{\mathord}{esrelation}{'052}
+%%----------------------------------------
+%% 0. main
+%%----------------------------------------
+
+\ProcessOptions\relax
+
+\def\relationrightproject{\parindent 0pt\mathpalette{\relationbuildprojectright\relationbarfill}}
+\def\relationleftproject{\parindent 0pt\mathpalette{\relationbuildprojectleft\relationbarfill}}
+\def\relationlifting{\parindent 0pt\mathpalette{\relationbuildlifting\relationbarfill}}
+%%----------------------------------------
+%% 1. fills
+%%----------------------------------------
+
+\def\relationbarfill#1{
+\m@th\leaders\hbox{$\mkern-2mu\barlong\mkern-2mu$}\hfill
+}
+
+\def\relationverticalbarfillleft#1{
+  \hbox to .5em{\vbox to #1{
+  \leaders\hbox{\hbox{$\verticalbarlongleft$}}
+  \vfill\kern-.5em$\verticalbarlongleft$}}
+}
+
+\def\relationverticalbarfillright#1{
+  \hbox to .5em{\vbox to #1{
+  \leaders\hbox{\hbox{$\verticalbarlongright$}}
+  \vfill\kern-.5em$\verticalbarlongright$}}
+}
+%%----------------------------------------
+%% 2. build
+%%----------------------------------------
+
+\def\relationbuildprojectright #1#2#3{
+%% #1 = \relationbarfill
+%% #2 = \mathchoice
+%% #3 = \relationleftproject{...}
+\setbox0=\hbox{$#3$} %% main expression
+\dimen0=\ht0 %% main box height
+\dimen1=\wd0 %% main box width
+\vbox{
+\ialign{##\crcr
+\noalign{\kern-.3em\nointerlineskip} %% overline
+\hbox to \dimen1{$\kern.1em\brktr$#1#2}$\mkern-3mu
+\arrwr$\crcr
+\noalign{\kern-.1em\nointerlineskip}$\m@th %% main
+\kern.1em\relationverticalbarfillleft{\dimen0}\kern-.3em\box0 $\crcr
+}
+}
+}
+
+\def\relationbuildprojectleft #1#2#3{
+%% #1 = \relationbarfill
+%% #2 = \mathchoice
+%% #3 = \relationleftproject{...}
+\setbox0=\hbox{$#3$} %% main expression
+\dimen0=\ht0 %% main box height
+\dimen1=\wd0 %% main box width
+\vbox{
+\ialign{##\crcr
+\noalign{\kern-.3em\nointerlineskip} %% overline
+\hbox to \dimen1{$\mkern2mu\arrwl$#1#2}$\kern.1em\brktl$\crcr
+\noalign{\kern-.1em\nointerlineskip}$\m@th %% main
+\mkern3mu\box0\mkern-3mu\kern.1em\relationverticalbarfillright{
+\dimen0}$\crcr
+}
+}
+}
+
+\def\relationbuildlifting #1#2#3{
+%% #1 = \relationbarfill
+%% #2 = \mathchoice
+%% #3 = \relationbuildlifting{...}
+\setbox0=\hbox{$#3$} %% main expression
+\dimen0=\ht0 %% main box height
+\dimen1=\wd0 %% main box width
+\advance\dimen1 by -.25em %% close horizontal gap
+\lower.75ex\hbox{\vbox{
+\ialign{##\crcr
+\noalign{\kern0em\nointerlineskip}$\m@th %% main
+\kern.1em\relationverticalbarfillleft{\dimen0}\mkern-5mu
+\box0 $\crcr
+\noalign{\kern-.2em\nointerlineskip} %% underline
+\hbox to \dimen1{$\kern.1em\brktlift$#1#2}$\mkern-3mu\barlong
+\barlong$\crcr
+}
+}
+}\kern-.25em
+}
+
+%</style>
+%    \end{macrocode}
+%    \begin{macrocode}
+%<*mf>
+
+%% mf setup
+
+font_coding_scheme:="TeX math symbols";
+mode_setup; font_setup;
+
+autorounding:=0;
+font_slant slant; font_x_height x_height#;
+font_quad 18u# if not monospace:+4letter_fit# fi;
+slant:=mono_charic#:=0;  % the remaining characters will not be slanted
+currenttransform:=identity yscaled aspect_ratio scaled granularity;
+
+
+%% identify symbols
+
+%% brackets
+
+bracket_project_right=oct"025";
+bracket_project_left=oct"024";
+bracket_lifting=oct"026";
+
+%% symbols
+
+restrict_wand=oct"027";
+restrict_barb=oct"030";
+restrict_mallet=oct"021";
+restrict_wand_up=oct"050";
+restrict_barb_up=oct"051";
+restrict_mallet_up=oct"052";
+
+
+%% arrows
+
+r_arrow22=oct"021";
+
+arrow_project_right=oct"022";
+arrow_project_left=oct"023";
+
+%% bars
+
+barshort=oct"040";
+barlong=oct"043";
+verticalbarlongleft=oct"044";
+verticalbarlongright=oct"046";
+verticalbarshort=oct"045";
+
+%% declare extensible 
+
+extensible oct"025": oct"025",0,0,oct"044";
+extensible oct"024": oct"024",0,0,oct"044";  
+
+
+
+%% define pixels
+
+define_pixels(em, cap, sb, penscaler);   	% Convert to device-specific units.
+define_corrected_pixels(o);		% Same, but add a device-specific fudge factor. 
+
+
+%% relation utility dims
+
+%% u = (w-(2*sb))/8;			% utility measurement
+uu = (h-(2*sb))/8;			% utility measurement (using h, not w)
+super = 3.9;				% offset utility for curve roundness [2.8]
+
+
+%% Arrow project Right
+
+iff known arrow_project_right: cmchar "arrow_project_right";
+compute_spread(.45x_height#,.55x_height#);
+beginchar(arrow_project_right,10u#,cap#, 1pt#);
+  
+  adjust_fit(0,0);
+  pickup pencircle scaled (penscaler);   % small, circular tip
+
+  %% Points
+
+  z1 = (-5u, math_axis);
+  z2 = (10u, y1);
+  z3 = (x2-5u, y2+5u);
+  
+  %% Draw
+
+  draw z1 -- z2 -- z3;   	% right arrow
+  penlabels(1,2,3,4,5,6); 
+
+endchar;
+
+
+%% Arrow project Left
+
+iff known arrow_project_left: cmchar "arrow_project_left";
+compute_spread(.45x_height#,.55x_height#);
+beginchar(arrow_project_left,10u#,cap#, 1pt#);
+  
+  adjust_fit(0,0);
+  pickup pencircle scaled (penscaler);   % small, circular tip
+
+  %% Points
+
+  z1 = (15u, math_axis);
+  z2 = (0, y1);
+  z3 = (x2+5u, y2+5u);
+  
+  %% Draw
+
+  draw z1 -- z2 -- z3;   	% right arrow
+  penlabels(1,2,3,4,5,6); 
+
+endchar;
+
+
+%% Bracket project Right
+
+iff known bracket_project_right: cmchar "bracket_project_right";
+compute_spread(.45x_height#,.55x_height#);
+beginchar(bracket_project_right,5u#,cap#, 1pt#);
+  
+  adjust_fit(0,0);
+  pickup pencircle scaled (penscaler);   % small, circular tip
+
+  %% Points
+
+  z1 = (0, -3*desc_depth);
+  z2 = (x1, math_axis-4u);
+  z3 = (x1+5u/super, y4-5u/super);
+  z4 = (x1+4u, math_axis);
+  z5 = (15u, y4);
+  
+  %% Draw
+
+  draw z1 -- z2 .. z3 .. z4 -- z5;   	% right bracket
+  penlabels(1,2,3,4,5,6); 
+
+endchar;
+
+
+%% Bracket project Left
+
+iff known bracket_project_left: cmchar "bracket_project_left";
+compute_spread(.45x_height#,.55x_height#);
+beginchar(bracket_project_left,5u#,cap#, 1pt#);
+  
+  adjust_fit(0,0);
+  pickup pencircle scaled (penscaler);   % small, circular tip
+
+  %% Points
+
+  z1 = (w, -3*desc_depth);
+  z2 = (x1, math_axis-4u);
+  z3 = (x1-5u/super, y4-5u/super);
+  z4 = (x1-4u, math_axis);
+  z5 = (-10u, y4);
+    
+  %% Draw
+
+  draw z1 -- z2 .. z3 .. z4 -- z5;   	% right bracket
+  penlabels(1,2,3,4,5,6); 
+
+endchar;
+
+
+%% Bracket Lifting
+
+iff known bracket_lifting: cmchar "bracket_lifting";
+compute_spread(.45x_height#,.55x_height#);
+beginchar(bracket_lifting,5u#,cap#, 1pt#);
+  
+  adjust_fit(0,0);
+  pickup pencircle scaled (penscaler);   % small, circular tip
+
+  %% Points
+
+  z1 = (0, h+10u);
+  z2 = (x1, math_axis+4u);
+  z3 = (x1+5u/super, y4+5u/super);
+  z4 = (4u, math_axis);
+  z5 = (w+10u, y4);
+  
+  %% Draw
+
+  draw z1 -- z2 .. z3 .. z4 -- z5;   	% bracket
+  penlabels(1,2,3,4,5,6); 
+
+endchar;
+
+
+% Bar Short
+
+iff known barshort: cmchar "barshort";
+compute_spread(.45x_height#,.55x_height#);
+beginchar(barshort,3u#,v_center(spread#+rule_thickness#));
+
+	adjust_fit(0,0); 
+	% pickup rule.nib;
+	pickup pencircle scaled (penscaler);   % small, circular tip  
+	x1=eps;
+	x2=w-eps+1u;
+	y1=y2=math_axis;
+	draw z1--z2;
+	penlabels(1,2);
+	
+endchar;
+
+
+%% Bar Long
+
+iff known barlong: cmchar "barlong";
+compute_spread(.45x_height#,.55x_height#);
+beginchar(barlong,6u#,v_center(spread#+rule_thickness#));
+
+	adjust_fit(0,0); 
+	% pickup rule.nib;
+	pickup pencircle scaled (penscaler);   % small, circular tip
+	x1=eps;
+	x2=w-eps+1u;
+	y1=y2=math_axis;
+	draw z1--z2;
+	penlabels(1,2);
+	
+endchar;
+
+
+%% Vertical Bar Long Left
+
+iff known verticalbarlongleft: cmchar "verticalbarlongleft";
+compute_spread(.45x_height#,.55x_height#);
+beginchar(verticalbarlongleft,5u#,v_center(spread#+rule_thickness#));
+
+	adjust_fit(0,0); 
+	pickup pencircle scaled (penscaler);   % small, circular tip
+	x1=x2=0;
+	y1=asc_height-5u;
+	y2=0;
+	draw z1--z2;
+	penlabels(1,2);
+	
+endchar;
+
+
+%% Vertical Bar Long Right
+
+iff known verticalbarlongright: cmchar "verticalbarlongright";
+compute_spread(.45x_height#,.55x_height#);
+beginchar(verticalbarlongright,5u#,v_center(spread#+rule_thickness#));
+
+	adjust_fit(0,0); 
+	pickup pencircle scaled (penscaler);   % small, circular tip
+	x1=x2=w;
+	y1=asc_height-5u;
+	y2=0;
+	draw z1--z2;
+	penlabels(1,2);
+	
+endchar;
+
+
+%% Vertical Bar Short
+
+iff known verticalbarshort: cmchar "verticalbarshort";
+compute_spread(.45x_height#,.55x_height#);
+beginchar(verticalbarshort,5u#,v_center(spread#+rule_thickness#));
+
+	adjust_fit(0,0); 
+	pickup pencircle scaled (penscaler);   % small, circular tip
+	x1=x2=0;
+	y1=1u;
+	y2=0;
+	draw z1--z2;
+	penlabels(1,2);
+	
+endchar;
+
+
+%% restrict Wand
+
+iff known restrict_wand: cmchar "restrict_wand";
+compute_spread(.45x_height#,.55x_height#);
+beginchar(restrict_wand,5u#,v_center(spread#+rule_thickness#));
+
+  pickup pencircle scaled (penscaler);   
+  
+  %% Points
+
+  z1 = (3u, asc_height);             	% bar
+  z2 = (x1, -2*u);
+
+  z3 = (x1-2*u, 0);			  			% asterisk
+  z4 = (x1+2*u, y3);
+  z5 = (x1-1.4*u, y3+1.4*u);
+  z6 = (x1+1.4*u, y3-1.4*u);
+  z7 = (x6, y5);
+  z8 = (x5, y6);
+
+  %% Draw
+
+  draw z1 -- z2;			  % |
+  draw z3 -- z4;			  % *
+  draw z5 -- z6;
+  draw z7 -- z8;
+
+	penlabels(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15);
+
+endchar;
+
+
+%% restrict Wand Up
+
+iff known restrict_wand_up: cmchar "restrict_wand_up";
+compute_spread(.45x_height#,.55x_height#);
+beginchar(restrict_wand_up,5u#,v_center(spread#+rule_thickness#));
+
+  pickup pencircle scaled (penscaler);   
+  
+  %% Points
+
+  z1 = (3u, -2u);             	% bar
+  z2 = (x1, asc_height);
+
+  z3 = (x1-2*u, y2-2u);			  			% asterisk
+  z4 = (x1+2*u, y3);
+  z5 = (x1-1.4*u, y3+1.4*u);
+  z6 = (x1+1.4*u, y3-1.4*u);
+  z7 = (x6, y5);
+  z8 = (x5, y6);
+
+  %% Draw
+
+  draw z1 -- z2;			  % |
+  draw z3 -- z4;			  % *
+  draw z5 -- z6;
+  draw z7 -- z8;
+
+	penlabels(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15);
+
+endchar;
+
+
+%% restrict Barb
+
+iff known restrict_barb: cmchar "restrict_barb";
+compute_spread(.45x_height#,.55x_height#);
+beginchar(restrict_barb,5u#,v_center(spread#+rule_thickness#));
+
+  pickup pencircle scaled (penscaler);   % Use a pen with a small, circular tip.
+
+  %% Points
+
+  z1 = (3u, asc_height);          	      % bar
+  z2 = (x1, -2*u);
+
+  z3 = (x1-2*u, 0);                     % diamond
+  z4 = (x1+2*u, y3);
+  z5 = (x1, 2*u);
+
+  %% Draw
+
+  draw z1 -- z2;                          % |
+  draw z3 -- z4 -- z5;                    % _\
+  draw z2 -- z3;                          % \
+
+  penlabels(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15);
+
+endchar;
+
+
+%% restrict Barb Up
+
+iff known restrict_barb_up: cmchar "restrict_barb_up";
+compute_spread(.45x_height#,.55x_height#);
+beginchar(restrict_barb_up,5u#,v_center(spread#+rule_thickness#));
+
+  pickup pencircle scaled (penscaler);   % Use a pen with a small, circular tip.
+
+  %% Points
+
+  z1 = (3u, -2u);          	      % bar
+  z2 = (x1, asc_height);
+
+  z3 = (x1-2*u, y2-2u);                     % diamond
+  z4 = (x1+2*u, y3);
+  z5 = (x1, y3-2u);
+
+  %% Draw
+
+  draw z1 -- z2;                          % |
+  draw z3 -- z4 -- z5;                    % _\
+  draw z2 -- z3;                          % \
+
+  penlabels(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15);
+
+endchar;
+
+
+%% restrict Mallet
+
+iff known restrict_mallet: cmchar "restrict_mallet";
+compute_spread(.45x_height#,.55x_height#);
+beginchar(restrict_mallet,5u#,v_center(spread#+rule_thickness#));
+ 
+  pickup pencircle scaled (penscaler);   % Use a pen with a small, circular tip.
+
+  %% Points
+
+  z1 = (3u, asc_height);          	      % bar
+  z2 = (x1, -2*u);
+
+  z3 = (x1-(4/3)*u, (-2/3)*u);                     % diamond
+  z4 = (x1+(4/3)*u, y3);
+  z5 = (x1, (2/3)*u);
+
+  %% Draw
+
+  draw z1 -- z2;                          % |
+  draw z3 .. z5 .. z4 .. z2 .. z3;        % o
+
+  penlabels(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15);
+
+endchar;
+
+
+
+%% restrict Mallet up
+
+iff known restrict_mallet_up: cmchar "restrict_mallet_up";
+compute_spread(.45x_height#,.55x_height#);
+beginchar(restrict_mallet_up,5u#,v_center(spread#+rule_thickness#));
+ 
+  pickup pencircle scaled (penscaler);   % Use a pen with a small, circular tip.
+
+  %% Points
+
+  z1 = (3u, -2u);          	      % bar
+  z2 = (x1, asc_height);
+
+  z3 = (x1-(4/3)*u, y2-4/3u);                     % diamond
+  z4 = (x1+(4/3)*u, y3);
+  z5 = (x1, y3-4/3u);
+
+  %% Draw
+
+  draw z1 -- z2;                          % |
+  draw z3 .. z5 .. z4 .. z2 .. z3;        % o
+
+  penlabels(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15);
+
+endchar;
+
+
+
+bye.
+
+%</mf>
+%    \end{macrocode}
+%    \begin{macrocode}
+%<*mf10>
+if unknown cmbase: input cmbase fi
+
+font_identifier:="VECT"; 
+font_size 10pt#;
+
+%% relation specific measures
+
+em# := 10pt#;				% ``M'' width
+cap# := 7pt#;				% cap height
+sb# := 1/4pt#;				% sidebearing
+o# := 1/16pt#;				% amt curves overshoot borders
+penscaler# := 0.3pt#;	 	% pen stroke scaler ** fix **
+
+%% relation non-sharped values * fix *
+
+%% u = (w-(2*sb))/8;			% utility measurement
+%% super = 3.9;				% offset utility for curve roundness [2.8]
+  
+%% cm values from esvect
+
+u#:=20/36pt#;      % unit width
+width_adj#:=0pt#;    % width adjustment for certain characters
+serif_fit#:=0pt#;    % extra sidebar near lowercase serifs
+cap_serif_fit#:=5/36pt#;  % extra sidebar near uppercase serifs
+letter_fit#:=0pt#;    % extra space added to all sidebars
+
+body_height#:=270/36pt#;  % height of tallest characters
+asc_height#:=250/36pt#;    % height of lowercase ascenders
+cap_height#:=246/36pt#;    % height of caps
+fig_height#:=232/36pt#;    % height of numerals
+x_height#:=155/36pt#;    % height of lowercase without ascenders
+math_axis#:=90/36pt#;    % axis of symmetry for math symbols
+bar_height#:=87/36pt#;    % height of crossbar in lowercase e
+comma_depth#:=70/36pt#;    % depth of comma below baseline
+desc_depth#:=70/36pt#;    % depth of lowercase descenders
+
+crisp#:=8/36pt#;    % diameter of serif corners
+tiny#:=8/36pt#;      % diameter of rounded corners
+fine#:=7/36pt#;      % diameter of sharply rounded corners
+thin_join#:=7/36pt#;    % width of extrafine details
+hair#:=9/36pt#;      % lowercase hairline breadth
+stem#:=24/36pt#;    % lowercase stem breadth
+curve#:=29/36pt#;    % lowercase curve breadth
+ess#:=27/36pt#;      % breadth in middle of lowercase s
+flare#:=32/36pt#;    % diameter of bulbs or breadth of terminals
+dot_size#:=38/36pt#;    % diameter of dots
+cap_hair#:=11/36pt#;    % uppercase hairline breadth
+cap_stem#:=30/36pt#;    % uppercase stem breadth
+cap_curve#:=35/36pt#;    % uppercase curve breadth
+cap_ess#:=33/36pt#;    % breadth in middle of uppercase s
+rule_thickness#:=.4pt#;    % thickness of lines in math symbols
+
+dish#:=1/36pt#;      % amount erased at top or bottom of serifs
+bracket#:=20/36pt#;    % vertical distance from serif base to tangent
+jut#:=30/36pt#;      % protrusion of lowercase serifs
+cap_jut#:=37/36pt#;    % protrusion of uppercase serifs
+beak_jut#:=10/36pt#;    % horizontal protrusion of beak serifs
+beak#:=70/36pt#;    % vertical protrusion of beak serifs
+vair#:=8/36pt#;      % vertical diameter of hairlines
+notch_cut#:=10pt#;    % maximum breadth above or below notches
+bar#:=11/36pt#;      % lowercase bar thickness
+slab#:=11/36pt#;    % serif and arm thickness
+cap_bar#:=11/36pt#;    % uppercase bar thickness
+cap_band#:=11/36pt#;    % uppercase thickness above/below lobes
+cap_notch_cut#:=10pt#;    % max breadth above/below uppercase notches
+serif_drop#:=4/36pt#;    % vertical drop of sloped serifs
+stem_corr#:=1/36pt#;    % for small refinements of stem breadth
+vair_corr#:=1/36pt#;    % for small refinements of hairline height
+apex_corr#:=0pt#;    % extra width at diagonal junctions
+
+%% o#:=8/36pt#;      % amount of overshoot for curves
+apex_o#:=8/36pt#;    % amount of overshoot for diagonal junctions
+
+slant:=.25;      % tilt ratio $(\Delta x/\Delta y)$
+fudge:=1;      % factor applied to weights of heavy characters
+math_spread:=0;      % extra openness of math symbols
+superness:=1/sqrt2;    % parameter for superellipses
+superpull:=1/6;      % extra openness inside bowls
+beak_darkness:=11/30;    % fraction of triangle inside beak serifs
+ligs:=2;      % level of ligatures to be included
+
+square_dots:=false;    % should dots be square?
+hefty:=false;      % should we try hard not to be overweight?
+serifs:=true;      % should serifs and bulbs be attached?
+monospace:=false;    % should all characters have the same width?
+variant_g:=true;    % should an italic-style g be used?
+low_asterisk:=false;    % should the asterisk be centered at the axis?
+math_fitting:=true;    % should math-mode spacing be used?
+
+subs:=7/10;  % subscripts to 10pt will normally be in 7pt type
+rth#:=.4pt#;  % assume that rules will come from cmex10
+fontdimen 8:  % parameters $\sigma_8$ through $\sigma_{22}$ will now be listed
+ math_axis#+3.51rth#+54/36pt#+subs*desc_depth#,      % num1
+ math_axis#+1.51rth#+30/36pt#,          % num2
+ math_axis#+1.51rth#+48/36pt#,          % num3
+ -(math_axis#-3.51rth#-subs*fig_height#-124/36pt#),    % denom1
+ -(math_axis#-1.51rth#-subs*fig_height#-30/36pt#),    % denom2
+ 8.99pt#-subs*asc_height#,          % sup1
+ 8.49pt#-subs*asc_height#,          % sup2
+ 104/36pt#,              % sup3
+ 54/36pt#,              % sub1
+ -(8.49pt#-2subs*asc_height#-3.1rth#),        % sub2
+ subs*asc_height#-36/36pt#,          % sup\_drop
+ 18/36pt#,              % sub\_drop
+ 23.9pt#,              % delim1
+ 10.1pt#,              % delim2
+ math_axis#;              % axis\_height
+
+generate esrelation      % switch to the driver file
+
+%</mf10>
+%    \end{macrocode}
+% \Finale

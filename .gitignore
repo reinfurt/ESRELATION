@@ -1,3 +1,9 @@
 # cruft
 .DS_Store
 *~
+
+# TeX aux files
+*.aux
+*.glo
+*.idx
+*.log
