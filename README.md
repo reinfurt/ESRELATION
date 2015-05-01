@@ -1,17 +1,27 @@
 The ESRELATION package
-----------------------
-
+======================
 by Byron Cook, Tauba Auerbach, David Reinfurt
+
+About
+-----
 
 The program termination problem, also known at the uniform halting problem, can be defined as: *Using a finite amount of time: determine whether a given program will always finish running or could possibly execute forever.*
 
 The Metafont programming and LaTeX package writing and TeX macro programming (*especially the TeX macro programming*) required to produce these symbols looked like it might, itself, never end. It took more than a year of work in fits and starts to understand how the jalopy of bits and pieces go together to make a font work with LaTeX. The Comprehensive LaTeXe Symbol List (http://www.ctan.org/tex-archive/info/symbols/comprehensive/) does not currently include this set, but on completion all of these files will be ready to upload in the correct formats for inclusion. These are implemented as a standard TeX math symbol font, implemented with custom Metafont sources, rendered on-the-fly as needed by LaTeX. Also provided in this package is a PostScript Type-1 version of the font. Symbols are accessed through macros defined in this package.
 
+Installation
+------------
+
 + run latex on esrelation.ins to generate sty, mf, fd files
 	> $ latex esrelation.ins
 
-+ run latex (or pdflatex) on esrelation.dtx to generate documentation (including installation instructions)
++ run latex (or pdflatex) on esrelation.dtx to generate documentation (including detailed installation instructions)
 	> $ pdflatex esrelation.dtx
+	
++ determine the location of your local TeX tree by running
+	> $ kpsewhich --var-val TEXMFLOCAL
+
+	(this value will henceforth be referred to as &lsquo;TEXMFLOCAL&rsquo;)
 
 + install esrelation.sty and uesrelation.fd in 
 	> TEXMFLOCAL/tex/latex/esrelation
@@ -24,6 +34,8 @@ The Metafont programming and LaTeX package writing and TeX macro programming (*e
 
 + install esrelation.map in
 	> TEXMFLOCAL/fonts/map/dvips/esrelation
+	
+**NB**: all created directories should be set to mode 755 and all of the above files should be set to mode 644.
 
 + update LaTeX font database
 	> $ sudo -H mktexlsr
@@ -33,6 +45,9 @@ The Metafont programming and LaTeX package writing and TeX macro programming (*e
 
 + udpate the font database again
 	> $ sudo -H mktexlsr
+
+Resources
+---------
 
 Up-to-date source code is hosted on github at:
 https://github.com/reinfurt/ESRELATION
